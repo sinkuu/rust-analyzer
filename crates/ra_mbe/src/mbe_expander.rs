@@ -309,7 +309,7 @@ fn match_meta_var(kind: &str, input: &mut TtCursor) -> Result<Option<tt::TokenTr
                     tt::Leaf::from(ident).into()
                 }
                 "tt" => input.eat().ok_or(ExpandError::UnexpectedToken)?.clone(),
-                "lifetime" => input.eat_lifetime().ok_or(ExpandError::UnexpectedToken)?.clone(),
+                "lifetime" => input.eat_lifetime().ok_or(ExpandError::UnexpectedToken)?,
                 "literal" => {
                     let literal = input.eat_literal().ok_or(ExpandError::UnexpectedToken)?.clone();
                     tt::Leaf::from(literal).into()

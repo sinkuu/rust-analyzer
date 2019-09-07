@@ -303,7 +303,7 @@ impl NavigationTarget {
 
 pub(crate) fn docs_from_symbol(db: &RootDatabase, symbol: &FileSymbol) -> Option<String> {
     let parse = db.parse(symbol.file_id);
-    let node = symbol.ptr.to_node(parse.tree().syntax()).to_owned();
+    let node = symbol.ptr.to_node(parse.tree().syntax());
 
     visitor()
         .visit(|it: ast::FnDef| it.doc_comment_text())
@@ -325,7 +325,7 @@ pub(crate) fn docs_from_symbol(db: &RootDatabase, symbol: &FileSymbol) -> Option
 /// e.g. `struct Name`, `enum Name`, `fn Name`
 pub(crate) fn description_from_symbol(db: &RootDatabase, symbol: &FileSymbol) -> Option<String> {
     let parse = db.parse(symbol.file_id);
-    let node = symbol.ptr.to_node(parse.tree().syntax()).to_owned();
+    let node = symbol.ptr.to_node(parse.tree().syntax());
 
     visitor()
         .visit(|node: ast::FnDef| node.short_label())
